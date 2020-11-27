@@ -39,6 +39,7 @@ class FishnetsController
     public function getFishnet(Fishnet $fishnet): JsonResponse
     {
         $fishnet = $fishnet->with(['customer', 'seller', 'logs']);
+
         return new JsonResponse($fishnet, JsonResponse::HTTP_OK);
     }
 
@@ -96,7 +97,7 @@ class FishnetsController
     {
         $userId = Auth::id();
 
-        $fishnets = Fishnet::where('customer_id', $userId)->orWhere('seller_id', $userId)->get();
+        $fishnets = Fishnet::where('customer_id', $userId)->orWhere('seller_id', $userId)->with(['customer', 'seller', 'logs'])->get();
 
         return new JsonResponse($fishnets, JsonResponse::HTTP_OK);
     }
