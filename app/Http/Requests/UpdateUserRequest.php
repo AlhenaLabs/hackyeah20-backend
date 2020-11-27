@@ -12,7 +12,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email|unique:users,email',
             'role' => ['nullable', Rule::in(RolesEnum::ALL)],
         ];
     }
