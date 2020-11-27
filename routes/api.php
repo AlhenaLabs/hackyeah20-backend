@@ -7,6 +7,7 @@ use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FishnetsController;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use App\Http\Controllers\FishnetLogController;
 
 Route::get('/login', function () {
     throw new UnauthorizedHttpException('Unauthorized!');
@@ -23,6 +24,7 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/fishnets/{fishnet}', [FishnetsController::class, 'deleteFishnet']);
     Route::post('/fishnets/{fishnet}/state', [FishnetsController::class, 'changeStatus']);
     Route::post('/fishnets/{fishnet}/lost', [FishnetsController::class, 'markAsLost']);
+    Route::post('/fishnets/{fishnet}/renew', [FishnetsController::class, 'renew']);
 
     Route::post('/users/{user}', [UsersController::class, 'resetPassword']);
     Route::post('/users', [UsersController::class, 'create']);
@@ -36,4 +38,7 @@ Route::middleware('auth:api')->group(function () {
     Route::patch('/account/password', [AccountController::class, 'changePassword']);
 
     Route::get('/notifications/{user}', [NotificationsController::class, 'getForUser']);
+
+    Route::get('/fishnet-logs', [FishnetLogController::class, 'getFishnetLogs']);
+    Route::get('/fishnet-logs/{id}', [FishnetLogController::class, 'getFishnetLog']);
 });
