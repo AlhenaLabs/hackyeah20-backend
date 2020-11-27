@@ -7,6 +7,7 @@ use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FishnetsController;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use App\Http\Controllers\FishnetLogController;
 
 Route::get('/login', function () {
     throw new UnauthorizedHttpException('Unauthorized!');
@@ -36,4 +37,7 @@ Route::middleware('auth:api')->group(function () {
     Route::patch('/account/password', [AccountController::class, 'changePassword']);
 
     Route::get('/notifications/{user}', [NotificationsController::class, 'getForUser']);
+
+    Route::get('/fishnet-logs', [FishnetLogController::class, 'getFishnetLogs']);
+    Route::get('/fishnet-logs/{id}', [FishnetLogController::class, 'getFishnetLog']);
 });
