@@ -11,8 +11,8 @@ class CreateFishnetsTable extends Migration
         Schema::create('fishnets', function (Blueprint $table) {
             $table->id();
             $table->string('rfid');
-            $table->foreignId('seller_id')->constrained('users');
-            $table->foreignId('customer_id')->constrained('users');
+            $table->foreignId('seller_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('customer_id')->constrained('users')->onDelete('cascade');
             $table->string('state')->default('new');
             $table->timestamps();
         });

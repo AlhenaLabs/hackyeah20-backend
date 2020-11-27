@@ -10,8 +10,8 @@ class CreateFishnetsLogsTable extends Migration
     {
         Schema::create('fishnets_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('fishnet_id')->constrained('fishnets');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('fishnet_id')->constrained('fishnets')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('type');
             $table->timestamps();
         });
