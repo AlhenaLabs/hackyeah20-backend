@@ -19,7 +19,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/fishnets/my', [FishnetsController::class, 'viewMy']);
     Route::post('/fishnets', [FishnetsController::class, 'addFishnet']);
     Route::put('/fishnets/{fishnet}', [FishnetsController::class, 'updateFishnet']);
-    Route::get('/fishnets/{fishnet}', [FishnetsController::class, 'getFishnet']);
+    Route::get('/fishnets/{id}', [FishnetsController::class, 'getFishnet']);
     Route::get('/fishnets', [FishnetsController::class, 'getFishnets']);
     Route::delete('/fishnets/{fishnet}', [FishnetsController::class, 'deleteFishnet']);
     Route::post('/fishnets/{fishnet}/state', [FishnetsController::class, 'changeStatus']);

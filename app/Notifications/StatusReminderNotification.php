@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Fishnet;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -28,12 +29,13 @@ class StatusReminderNotification extends Notification
     public function toMail($notifiable)
     {
         $name = $this->user->name;
+        $fishnetBoughtDate = $this->fishnet->rfid;
         $fishnetRfid = $this->fishnet->rfid;
 
         return (new MailMessage)
             ->subject('WWF :: Fishnet status renewal reminder')
             ->greeting("Hello $name!")
-            ->line("Your fishnet with rfid: $fishnetRfid needs status renewal.")
+            ->line("Your fishnet bought at: $fishnetBoughtDate needs status renewal.")
             ->line("Please update your fishnet status.");
     }
 

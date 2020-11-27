@@ -29,13 +29,13 @@ class StatusChangedNotification extends Notification
     public function toMail($notifiable)
     {
         $name = $this->user->name;
-        $fishnetRfid = $this->fishnet->rfid;
+        $fishnetBoughtDate = $this->fishnet->rfid;
         $fishnetState = $this->fishnet->state;
 
         return (new MailMessage)
             ->subject('WWF :: Fishnet status changed')
             ->greeting("Hello $name!")
-            ->line("Your fishnet with rfid: $fishnetRfid changed status.")
+            ->line("Your fishnet bought at: $fishnetBoughtDate changed status.")
             ->line("new status: $fishnetState");
     }
 
