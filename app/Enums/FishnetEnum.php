@@ -11,6 +11,7 @@ class FishnetEnum
     public const IN_USE = 'in use';
     public const DAMAGED = 'damaged';
     public const RETURNED = 'returned';
+    public const RENEWED = 'renewed';
 
     public const ALL = [
         self::LOST,
@@ -20,5 +21,11 @@ class FishnetEnum
         self::IN_USE,
         self::DAMAGED,
         self::RETURNED
+    ];
+
+    public const RENEWABLE = [
+        self::IN_USE,
+        self::NEEDS_RENEWAL,
+        self::PURCHASED
     ];
 }

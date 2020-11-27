@@ -24,6 +24,7 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/fishnets/{fishnet}', [FishnetsController::class, 'deleteFishnet']);
     Route::post('/fishnets/{fishnet}/state', [FishnetsController::class, 'changeStatus']);
     Route::post('/fishnets/{fishnet}/lost', [FishnetsController::class, 'markAsLost']);
+    Route::post('/fishnets/{fishnet}/renew', [FishnetsController::class, 'renew']);
 
     Route::post('/users/{user}', [UsersController::class, 'resetPassword']);
     Route::post('/users', [UsersController::class, 'create']);

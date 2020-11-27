@@ -101,4 +101,23 @@ class FishnetsController
 
         return new JsonResponse($fishnets, JsonResponse::HTTP_OK);
     }
+
+    public function renew(Fishnet $fishnet): JsonResponse
+    {
+        if (!in_array($fishnet->state, FishnetEnum::RENEWABLE)) {
+            return new JsonResponse('This fishnet cannot be renewed.', JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        $user = Auth::user();
+
+        $fishnet->state = FishnetEnum::IN_USE;
+
+        $fishnet->save();
+
+        FishnetLog::log($user->id, $fishnet->id, FishnetEnum::RENEWED);
+
+        Notification::send($user, new StatusChangedNotification($user, $fishnet), NotificationsEnum::FISHNET_STATUS_CHANGED);
+
+        return new JsonResponse($fishnet, JsonResponse::HTTP_OK);
+    }
 }
