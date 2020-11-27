@@ -12,6 +12,11 @@ class Fishnet extends Model
 
     protected $fillable = ['rfid', 'seller_id', 'customer_id', 'state'];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
     public function seller(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'seller_id');

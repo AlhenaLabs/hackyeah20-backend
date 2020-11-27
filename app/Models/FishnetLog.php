@@ -11,6 +11,11 @@ class FishnetLog extends Model
 
     protected $fillable = ['fishnet_id', 'user_id', 'type'];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
     public static function log(int $userId, int $fishnetId, string $type): void
     {
         $fishnetLog = new FishnetLog();
