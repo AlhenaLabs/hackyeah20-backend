@@ -13,8 +13,7 @@ class FishnetRequest extends FormRequest
         return [
             'rfid' => 'required|string',
             'seller_id' => 'nullable|numeric',
-            'customer_id' => 'nullable|numeric',
-            'state' => ['nullable', Rule::in([FishnetEnum::ALL])]
+            'customer_id' => 'nullable|numeric'
         ];
     }
 }
