@@ -19,8 +19,6 @@ class AuthController
 
         $user = Auth::user();
 
-        $user->tokens()->delete();
-
         $token = $user->createToken('auth');
 
         return new JsonResponse([
