@@ -29,6 +29,6 @@ class Fishnet extends Model
 
     public function logs(): HasMany
     {
-        return $this->hasMany(FishnetLog::class, 'id', 'id');
+        return $this->hasMany(FishnetLog::class, 'fishnet_id', 'id');
     }
 }
