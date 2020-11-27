@@ -12,7 +12,7 @@ class CreateFishnetsTable extends Migration
             $table->id();
             $table->string('rfid');
             $table->foreignId('seller_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('customer_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('customer_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->string('state')->default('new');
             $table->timestamps();
         });
